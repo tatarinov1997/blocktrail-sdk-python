@@ -20,7 +20,7 @@ class Wallet(object):
         self.primary_private_key = primary_private_key
         self.backup_public_key = backup_public_key
 
-        self.blocktrail_public_keys = dict([(str(_key_index), BIP32Node.from_hwif(_key[0])) for _key_index, _key in blocktrail_public_keys.items()])
+        self.blocktrail_public_keys = dict([(str(_key_index), BIP32Node.from_hwif(_key[0])) for _key_index, _key in enumerate(blocktrail_public_keys)])
         self.key_index = int(key_index)
         self.testnet = testnet
 
@@ -136,7 +136,7 @@ class Wallet(object):
         data = self.client.upgrade_key_index(self.identifier, key_index, (primary_public_key.hwif(), "M/%d'" % key_index))
 
         self.key_index = key_index
-        for blocktrail_key_index, blocktrail_public_key in data['blocktrail_public_keys'].items():
+        for blocktrail_key_index, blocktrail_public_key in enumerate(data['blocktrail_public_keys']):
             self.blocktrail_public_keys[str(blocktrail_key_index)] = BIP32Node.from_hwif(blocktrail_public_key[0])
 
     def delete_wallet(self):
