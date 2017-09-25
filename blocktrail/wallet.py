@@ -68,7 +68,7 @@ class Wallet(object):
 
         return balance_info['confirmed'], balance_info['unconfirmed']
 
-    def pay(self, pay, change_address=None, allow_zero_conf=False, randomize_change_idx=True):
+    def pay(self, pay, change_address=None, allow_zero_conf=False, randomize_change_idx=True, fee_strategy='optimal'):
         send = {}
 
         if isinstance(pay, list):
@@ -77,7 +77,8 @@ class Wallet(object):
         else:
             send = pay
 
-        coin_selection = self.client.coin_selection(self.identifier, send, lockUTXO=True, allow_zero_conf=allow_zero_conf)
+        coin_selection = self.client.coin_selection(self.identifier, send, lockUTXO=True, allow_zero_conf=allow_zero_conf,
+                                                    fee_strategy=fee_strategy)
 
         utxos = coin_selection['utxos']
         fee = coin_selection['fee']

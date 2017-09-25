@@ -508,12 +508,13 @@ class APIClient(object):
 
         return response.json()
 
-    def coin_selection(self, identifier, outputs, lockUTXO=False, allow_zero_conf=False):
+    def coin_selection(self, identifier, outputs, lockUTXO=False, allow_zero_conf=False, fee_strategy='optimal'):
         response = self.client.post(
             "/wallet/%s/coin-selection" % (identifier, ),
             params={
                 'lock': lockUTXO,
-                'zeroconf': allow_zero_conf
+                'zeroconf': allow_zero_conf,
+                'fee_strategy': fee_strategy
             },
             data=outputs,
             auth=True
