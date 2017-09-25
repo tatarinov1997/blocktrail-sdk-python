@@ -7,8 +7,8 @@ if sys.version_info[0] == 3 and sys.version_info[1] == 2:
     sys.exit(1)
 
 setup(
-    name='blocktrail-sdk-beta',
-    version='1.0.6',
+    name='blocktrail-sdk-python',
+    version='1.0.7',
     description="BlockTrail's Developer Friendly Bitcoin SDK",
     long_description="""\
 BlockTrail's Developer Friendly Bitcoin SDK
