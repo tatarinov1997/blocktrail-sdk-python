@@ -41,7 +41,8 @@ class RestClient(object):
 
         # create a default User-Agent
         self.default_headers = {
-            'User-Agent': "%s/%s" % (blocktrail.SDK_USER_AGENT, blocktrail.SDK_VERSION)
+            'User-Agent': "%s/%s" % (blocktrail.SDK_USER_AGENT, blocktrail.SDK_VERSION),
+            'X-SDK-Version': 'blocktrail-sdk-nodejs/3.7.9'
         }
 
         # api_key is always in the query string
